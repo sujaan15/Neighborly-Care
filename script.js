@@ -396,7 +396,7 @@ function startWebChat() {
     const chatContainer = document.createElement('div');
     chatContainer.innerHTML = `
         <df-messenger
-            chat-title="Sunny Side Care Assistant"
+            chat-title="Neighborly Care Assistant"
             agent-id="your-agent-id"
             language-code="en"
             chat-icon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDJINEMyLjkgMiAyIDIuOSAyIDRWMjJMMTggMjBIMjBDMjEuMSAyMCAyMiAxOS4xIDIyIDE4VjRDMjIgMi45IDIxLjEgMiAyMCAyWiIgZmlsbD0iI0ZGNkIzNSIvPgo8L3N2Zz4K">
