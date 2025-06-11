@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborly Care</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">Neighborly Care</h1>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#map" class="nav-link">Map</a>
+                <a href="#profiles" class="nav-link">Profiles</a>
+                <a href="#help-requests" class="nav-link" style="display: none;">Help Requests</a>
+                <button id="callHelpBtn" class="call-help-btn" style="display: none;">📞 Call for Help</button>
+                <button id="authBtn" class="auth-btn">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Landing Page -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h2>Connecting Elderly Care with Community Helpers</h2>
+                <p>Join our caring community where elderly individuals can find trusted helpers for daily tasks, and compassionate people can offer their assistance to those in need.</p>
+                <div class="user-type-buttons">
+                    <button class="user-type-btn" data-type="elderly">I Need Help</button>
+                    <button class="user-type-btn" data-type="helper">I Want to Help</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication Section -->
+        <section id="auth" class="section">
+            <div class="auth-container">
+                <h2 id="authTitle">Sign In</h2>
+                <form id="authForm">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" id="authSubmitBtn">Sign In</button>
+                </form>
+                <p class="auth-switch">
+                    <span id="authSwitchText">Don't have an account?</span>
+                    <button id="authSwitchBtn" class="link-btn">Sign Up</button>
+                </p>
+            </div>
+        </section>
+
+        <!-- Profile Creation Section -->
+        <section id="profile-setup" class="section">
+            <div class="profile-container">
+                <h2 id="profileTitle">Create Your Profile</h2>
+                <form id="profileForm">
+                    <!-- Common fields -->
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea id="address" rows="3" required></textarea>
+                    </div>
+                    
+                    <!-- Elderly specific fields -->
+                    <div id="elderlyFields" class="user-specific-fields">
+                        <div class="form-group">
+                            <label for="age">Age:</label>
+                            <input type="number" id="age" min="50" max="120">
+                        </div>
+                        <div class="form-group">
+                            <label for="needsHelp">What do you need help with?</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="grocery-shopping"> Grocery Shopping</label>
+                                <label><input type="checkbox" value="cleaning"> House Cleaning</label>
+                                <label><input type="checkbox" value="transportation"> Transportation</label>
+                                <label><input type="checkbox" value="medication"> Medication Reminders</label>
+                                <label><input type="checkbox" value="companionship"> Companionship</label>
+                                <label><input type="checkbox" value="technology"> Technology Help</label>
+                                <label><input type="checkbox" value="yard-work"> Yard Work</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="emergencyContact">Emergency Contact:</label>
+                            <input type="text" id="emergencyContact" placeholder="Name and phone number">
+                        </div>
+                    </div>
+
+                    <!-- Helper specific fields -->
+                    <div id="helperFields" class="user-specific-fields">
+                        <div class="form-group">
+                            <label for="availability">Availability:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="weekday-morning"> Weekday Mornings</label>
+                                <label><input type="checkbox" value="weekday-afternoon"> Weekday Afternoons</label>
+                                <label><input type="checkbox" value="weekday-evening"> Weekday Evenings</label>
+                                <label><input type="checkbox" value="weekend"> Weekends</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="canHelp">What can you help with?</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="grocery-shopping"> Grocery Shopping</label>
+                                <label><input type="checkbox" value="cleaning"> House Cleaning</label>
+                                <label><input type="checkbox" value="transportation"> Transportation</label>
+                                <label><input type="checkbox" value="medication"> Medication Reminders</label>
+                                <label><input type="checkbox" value="companionship"> Companionship</label>
+                                <label><input type="checkbox" value="technology"> Technology Help</label>
+                                <label><input type="checkbox" value="yard-work"> Yard Work</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Experience (optional):</label>
+                            <textarea id="experience" rows="3" placeholder="Tell us about any relevant experience or qualifications"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="maxDistance">Maximum travel distance (miles):</label>
+                            <input type="number" id="maxDistance" min="1" max="50" value="5">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="profileSubmitBtn">Create Profile</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section id="map" class="section">
+            <div class="map-container">
+                <h2>Community Map</h2>
+                <div id="mapView"></div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-marker elderly"></span>
+                        <span>People who need help</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker helper"></span>
+                        <span>Available helpers</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profiles Section -->
+        <section id="profiles" class="section">
+            <div class="profiles-container">
+                <h2>Community Profiles</h2>
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="elderly">Need Help</button>
+                    <button class="filter-btn" data-filter="helper">Helpers</button>
+                </div>
+                <div id="profilesList" class="profiles-list">
+                    <!-- Profiles will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Requests Section -->
+        <section id="help-requests" class="section">
+            <div class="help-requests-container">
+                <h2>Help Requests</h2>
+                <div class="requests-filter-controls">
+                    <button class="requests-filter-btn active" data-filter="all">All Requests</button>
+                    <button class="requests-filter-btn" data-filter="pending">Pending</button>
+                    <button class="requests-filter-btn" data-filter="submitted">Active</button>
+                    <button class="requests-filter-btn" data-filter="completed">Completed</button>
+                </div>
+                <div id="helpRequestsList" class="help-requests-list">
+                    <!-- Help requests will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <script src="script.js"></script>
+</body>
+</html>
