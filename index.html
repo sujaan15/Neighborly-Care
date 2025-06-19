@@ -6,17 +6,24 @@
     <title>Neighborly Care</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-logo">Neighborly Care</h1>
+            <div class="nav-logo">
+                <img src="care logo.png" alt="Neighborly Care Logo" class="nav-logo-img">
+                <h1>Neighborly Care</h1>
+            </div>
             <div class="nav-links">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#map" class="nav-link">Map</a>
                 <a href="#profiles" class="nav-link">Profiles</a>
                 <a href="#help-requests" class="nav-link" style="display: none;">Help Requests</a>
-                <button id="callHelpBtn" class="call-help-btn" style="display: none;">📞 Call for Help</button>
+                <button id="myProfileBtn" class="my-profile-btn" style="display: none;">My Profile</button>
+                <button id="callHelpBtn" class="call-help-btn">📞 Call for Help</button>
                 <button id="authBtn" class="auth-btn">Sign In</button>
             </div>
         </div>
@@ -26,11 +33,11 @@
         <!-- Landing Page -->
         <section id="home" class="section active">
             <div class="hero">
-                <h2>Connecting Elderly Care with Community Helpers</h2>
+                <h2>Reliable Care, just around the corner.</h2>
                 <p>Join our caring community where elderly individuals can find trusted helpers for daily tasks, and compassionate people can offer their assistance to those in need.</p>
                 <div class="user-type-buttons">
-                    <button class="user-type-btn" data-type="elderly">I Need Help</button>
                     <button class="user-type-btn" data-type="helper">I Want to Help</button>
+                    <button class="user-type-btn" data-type="elderly">I Need Help</button>
                 </div>
             </div>
         </section>
@@ -39,6 +46,8 @@
         <section id="auth" class="section">
             <div class="auth-container">
                 <h2 id="authTitle">Sign In</h2>
+                
+
                 <form id="authForm">
                     <div class="form-group">
                         <label for="email">Email:</label>
@@ -88,7 +97,6 @@
                                 <label><input type="checkbox" value="grocery-shopping"> Grocery Shopping</label>
                                 <label><input type="checkbox" value="cleaning"> House Cleaning</label>
                                 <label><input type="checkbox" value="transportation"> Transportation</label>
-                                <label><input type="checkbox" value="medication"> Medication Reminders</label>
                                 <label><input type="checkbox" value="companionship"> Companionship</label>
                                 <label><input type="checkbox" value="technology"> Technology Help</label>
                                 <label><input type="checkbox" value="yard-work"> Yard Work</label>
@@ -117,7 +125,6 @@
                                 <label><input type="checkbox" value="grocery-shopping"> Grocery Shopping</label>
                                 <label><input type="checkbox" value="cleaning"> House Cleaning</label>
                                 <label><input type="checkbox" value="transportation"> Transportation</label>
-                                <label><input type="checkbox" value="medication"> Medication Reminders</label>
                                 <label><input type="checkbox" value="companionship"> Companionship</label>
                                 <label><input type="checkbox" value="technology"> Technology Help</label>
                                 <label><input type="checkbox" value="yard-work"> Yard Work</label>
@@ -183,6 +190,19 @@
                 </div>
                 <div id="helpRequestsList" class="help-requests-list">
                     <!-- Help requests will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- My Profile Section -->
+        <section id="my-profile" class="section">
+            <div class="my-profile-container">
+                <h2>My Profile</h2>
+                <div id="myProfileContent" class="my-profile-content">
+                    <!-- Profile content will be populated by JavaScript -->
+                </div>
+                <div class="profile-actions">
+                    <button id="editProfileBtn" class="edit-profile-btn">Edit Profile</button>
                 </div>
             </div>
         </section>

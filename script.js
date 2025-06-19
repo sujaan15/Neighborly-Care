@@ -18,27 +18,61 @@ function setupEventListeners() {
         link.addEventListener('click', handleNavigation);
     });
 
-    document.getElementById('authBtn').addEventListener('click', () => {
-        showSection('auth');
-    });
+    const authBtn = document.getElementById('authBtn');
+    if (authBtn) {
+        authBtn.addEventListener('click', () => {
+            showSection('auth');
+        });
+    }
 
     document.querySelectorAll('.user-type-btn').forEach(btn => {
         btn.addEventListener('click', handleUserTypeSelection);
     });
 
-    document.getElementById('authSwitchBtn').addEventListener('click', toggleAuthMode);
-    document.getElementById('authForm').addEventListener('submit', handleAuth);
-    document.getElementById('profileForm').addEventListener('submit', handleProfileSubmit);
+    const authSwitchBtn = document.getElementById('authSwitchBtn');
+    if (authSwitchBtn) {
+        authSwitchBtn.addEventListener('click', toggleAuthMode);
+    }
+
+    const authForm = document.getElementById('authForm');
+    if (authForm) {
+        authForm.addEventListener('submit', handleAuth);
+    }
+
+    const profileForm = document.getElementById('profileForm');
+    if (profileForm) {
+        profileForm.addEventListener('submit', handleProfileSubmit);
+    }
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', handleProfileFilter);
     });
 
-    document.getElementById('callHelpBtn').addEventListener('click', handleCallForHelp);
+    const callHelpBtn = document.getElementById('callHelpBtn');
+    if (callHelpBtn) {
+        callHelpBtn.addEventListener('click', handleCallForHelp);
+    }
     
     document.querySelectorAll('.requests-filter-btn').forEach(btn => {
         btn.addEventListener('click', handleRequestsFilter);
     });
+
+    const myProfileBtn = document.getElementById('myProfileBtn');
+    if (myProfileBtn) {
+        myProfileBtn.addEventListener('click', () => {
+            showSection('my-profile');
+            displayMyProfile();
+        });
+    }
+
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    if (editProfileBtn) {
+        editProfileBtn.addEventListener('click', () => {
+            showSection('profile-setup');
+            populateProfileForm();
+            document.getElementById('profileSubmitBtn').textContent = 'Save Profile';
+        });
+    }
 }
 
 function handleNavigation(e) {
@@ -124,7 +158,11 @@ function showProfileSetup() {
     }
 
     showSection('profile-setup');
+    
+    // Reset button text for new profile creation
+    document.getElementById('profileSubmitBtn').textContent = 'Create Profile';
 }
+
 
 function handleProfileSubmit(e) {
     e.preventDefault();
@@ -167,12 +205,14 @@ function handleProfileSubmit(e) {
 function updateAuthButton() {
     const authBtn = document.getElementById('authBtn');
     const callHelpBtn = document.getElementById('callHelpBtn');
+    const myProfileBtn = document.getElementById('myProfileBtn');
     const helpRequestsLink = document.querySelector('a[href="#help-requests"]');
     
     if (currentUser) {
         authBtn.textContent = 'Sign Out';
         authBtn.onclick = signOut;
         callHelpBtn.style.display = 'block';
+        myProfileBtn.style.display = 'block';
         if (helpRequestsLink) {
             helpRequestsLink.style.display = 'block';
         }
@@ -180,6 +220,7 @@ function updateAuthButton() {
         authBtn.textContent = 'Sign In';
         authBtn.onclick = () => showSection('auth');
         callHelpBtn.style.display = 'none';
+        myProfileBtn.style.display = 'none';
         if (helpRequestsLink) {
             helpRequestsLink.style.display = 'none';
         }
@@ -244,7 +285,7 @@ function loadSampleData() {
             age: 82,
             address: '789 Midtown Drive, Midtown Atlanta, GA',
             phone: '(555) 345-6789',
-            needsHelp: ['yard-work', 'technology', 'medication'],
+            needsHelp: ['yard-work', 'technology'],
             emergencyContact: 'Michael Williams (555) 876-5432',
             lat: 33.7701,
             lng: -84.3862
@@ -596,4 +637,142 @@ async function markAsCompleted(requestId) {
         // Simulate success for demo purposes
         loadHelpRequests();
     }
+}
+
+function displayMyProfile() {
+    if (!currentUser || !currentUser.profile) {
+        document.getElementById('myProfileContent').innerHTML = `
+            <div style="text-align: center; padding: 3rem; color: #7f8c8d;">
+                <h3>No profile found</h3>
+                <p>Please create your profile first.</p>
+            </div>
+        `;
+        return;
+    }
+
+    const profile = currentUser.profile;
+    const isHelper = profile.userType === 'helper';
+    const profileTypeLabel = isHelper ? 'Helper Profile' : 'Care Profile';
+    const profileTypeColor = isHelper ? '#6d8ea0' : '#ec7357';
+    
+    let profileHTML = `
+        <div class="profile-type-badge" style="background: ${profileTypeColor}; color: white; padding: 0.5rem 1rem; border-radius: 20px; text-align: center; margin-bottom: 1.5rem; font-weight: bold;">
+            ${profileTypeLabel}
+        </div>
+        <div class="profile-field">
+            <span class="profile-field-label">Full Name:</span>
+            <span class="profile-field-value">${profile.fullName}</span>
+        </div>
+        <div class="profile-field">
+            <span class="profile-field-label">Email:</span>
+            <span class="profile-field-value">${profile.email}</span>
+        </div>
+        <div class="profile-field">
+            <span class="profile-field-label">Phone:</span>
+            <span class="profile-field-value">${profile.phone}</span>
+        </div>
+        <div class="profile-field">
+            <span class="profile-field-label">Address:</span>
+            <span class="profile-field-value">${profile.address}</span>
+        </div>
+    `;
+
+    if (isHelper) {
+        profileHTML += `
+            <div class="profile-field">
+                <span class="profile-field-label">Can Help With:</span>
+                <div class="profile-tags-display">
+                    ${(profile.canHelp || []).map(skill => `<span class="profile-tag-display">${skill.replace('-', ' ')}</span>`).join('')}
+                </div>
+            </div>
+            <div class="profile-field">
+                <span class="profile-field-label">Availability:</span>
+                <div class="profile-tags-display">
+                    ${(profile.availability || []).map(time => `<span class="profile-tag-display">${time.replace('-', ' ')}</span>`).join('')}
+                </div>
+            </div>
+            ${profile.experience ? `
+                <div class="profile-field">
+                    <span class="profile-field-label">Experience:</span>
+                    <span class="profile-field-value">${profile.experience}</span>
+                </div>
+            ` : ''}
+            ${profile.maxDistance ? `
+                <div class="profile-field">
+                    <span class="profile-field-label">Maximum Travel Distance:</span>
+                    <span class="profile-field-value">${profile.maxDistance} miles</span>
+                </div>
+            ` : ''}
+        `;
+    } else {
+        profileHTML += `
+            ${profile.age ? `
+                <div class="profile-field">
+                    <span class="profile-field-label">Age:</span>
+                    <span class="profile-field-value">${profile.age}</span>
+                </div>
+            ` : ''}
+            <div class="profile-field">
+                <span class="profile-field-label">Needs Help With:</span>
+                <div class="profile-tags-display">
+                    ${(profile.needsHelp || []).map(need => `<span class="profile-tag-display">${need.replace('-', ' ')}</span>`).join('')}
+                </div>
+            </div>
+            ${profile.emergencyContact ? `
+                <div class="profile-field">
+                    <span class="profile-field-label">Emergency Contact:</span>
+                    <span class="profile-field-value">${profile.emergencyContact}</span>
+                </div>
+            ` : ''}
+        `;
+    }
+
+    document.getElementById('myProfileContent').innerHTML = profileHTML;
+}
+
+function populateProfileForm() {
+    if (!currentUser || !currentUser.profile) return;
+    
+    const profile = currentUser.profile;
+    
+    // Populate common fields
+    document.getElementById('fullName').value = profile.fullName || '';
+    document.getElementById('phone').value = profile.phone || '';
+    document.getElementById('address').value = profile.address || '';
+    
+    if (profile.userType === 'elderly') {
+        document.getElementById('age').value = profile.age || '';
+        document.getElementById('emergencyContact').value = profile.emergencyContact || '';
+        
+        // Check the appropriate help checkboxes
+        if (profile.needsHelp) {
+            profile.needsHelp.forEach(help => {
+                const checkbox = document.querySelector(`#elderlyFields input[value="${help}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+    } else if (profile.userType === 'helper') {
+        document.getElementById('experience').value = profile.experience || '';
+        document.getElementById('maxDistance').value = profile.maxDistance || '';
+        
+        // Check availability checkboxes
+        if (profile.availability) {
+            profile.availability.forEach(time => {
+                const checkbox = document.querySelector(`#helperFields input[value="${time}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+        
+        // Check help capability checkboxes
+        if (profile.canHelp) {
+            profile.canHelp.forEach(help => {
+                const checkbox = document.querySelector(`#helperFields .checkbox-group:nth-of-type(2) input[value="${help}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+    }
+    
+    // Set up the form properly
+    currentUserType = profile.userType;
+    showProfileSetup();
 }

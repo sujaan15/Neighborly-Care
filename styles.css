@@ -5,14 +5,14 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Merriweather', serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f8f9fa;
+    background-color: #fffdedff;
 }
 
 .navbar {
-    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    background: #0d324d;
     padding: 1rem 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
@@ -31,15 +31,28 @@ body {
 }
 
 .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-logo h1 {
     color: white;
     font-size: 1.8rem;
-    font-weight: bold;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 700;
+    margin: 0;
+}
+
+.nav-logo-img {
+    height: 60px;
+    width: auto;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .nav-link {
@@ -57,9 +70,11 @@ body {
     background: white;
     color: #ff6b35;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: 'Merriweather', serif;
     font-weight: bold;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -70,21 +85,43 @@ body {
 }
 
 .call-help-btn {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: #ec7357;
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: 'Merriweather', serif;
     font-weight: bold;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    box-shadow: 0 4px 15px rgba(236, 115, 87, 0.3);
 }
 
 .call-help-btn:hover {
-    background: linear-gradient(135deg, #c0392b, #a93226);
+    background: #d6634f;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    box-shadow: 0 6px 20px rgba(236, 115, 87, 0.4);
+}
+
+.my-profile-btn {
+    background: #6d8ea0;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(109, 142, 160, 0.3);
+}
+
+.my-profile-btn:hover {
+    background: #5a7d94;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(109, 142, 160, 0.4);
 }
 
 main {
@@ -98,20 +135,43 @@ main {
 }
 
 .section.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section.active#home {
+    display: flex;
+}
+
+.section.active#map,
+.section.active#profiles,
+.section.active#auth,
+.section.active#profile-setup,
+.section.active#help-requests {
     display: block;
+    padding: 2rem;
 }
 
 .hero {
     text-align: center;
     max-width: 800px;
-    margin: 4rem auto;
+    margin: 0;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero h2 {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: #2c3e50;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .hero p {
@@ -129,29 +189,43 @@ main {
 }
 
 .user-type-btn {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: #6d8ea0;
     color: white;
     border: none;
     padding: 1.5rem 3rem;
     font-size: 1.2rem;
+    font-family: 'Merriweather', serif;
     border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 4px 15px rgba(109, 142, 160, 0.3);
 }
 
 .user-type-btn:hover {
+    background: #5a7d94;
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    box-shadow: 0 6px 20px rgba(109, 142, 160, 0.4);
 }
 
 .user-type-btn:nth-child(2) {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    background: #ec7357;
+    box-shadow: 0 4px 15px rgba(236, 115, 87, 0.3);
 }
 
 .user-type-btn:nth-child(2):hover {
-    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    background: #d6634f;
+    box-shadow: 0 6px 20px rgba(236, 115, 87, 0.4);
+}
+
+.hero-image {
+    margin-top: 3rem;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .auth-container, .profile-container {
@@ -257,6 +331,7 @@ button[type="submit"]:hover {
 .link-btn:hover {
     color: #2980b9;
 }
+
 
 .map-container {
     max-width: 1200px;
@@ -515,15 +590,27 @@ button[type="submit"]:hover {
 }
 
 .web-chat-btn {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: #0d324d;
     color: white;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 4px 15px rgba(13, 50, 77, 0.3);
 }
 
 .web-chat-btn:hover {
-    background: linear-gradient(135deg, #2980b9, #1f618d);
+    background: #0a2838;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    box-shadow: 0 6px 20px rgba(13, 50, 77, 0.4);
+}
+
+/* Dialogflow Messenger Styling */
+df-messenger {
+    --df-messenger-bot-message: #0d324d;
+    --df-messenger-button-titlebar-color: #0d324d;
+    --df-messenger-chat-background-color: #ffffff;
+    --df-messenger-font-color: #333;
+    --df-messenger-send-icon: #0d324d;
+    --df-messenger-user-message: #ec7357;
+    --df-messenger-button-titlebar-text-color: #ffffff;
+    --df-messenger-minimized-chat-close-icon-color: #ec7357;
 }
 
 .help-requests-container {
@@ -674,13 +761,15 @@ button[type="submit"]:hover {
 
 @media (max-width: 768px) {
     .nav-container {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 0 1rem;
     }
 
     .nav-links {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        gap: 0.5rem;
+        flex-wrap: wrap;
     }
 
     .hero h2 {
@@ -714,3 +803,105 @@ button[type="submit"]:hover {
         grid-template-columns: 1fr;
     }
 }
+
+.my-profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.my-profile-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    font-size: 2rem;
+}
+
+.my-profile-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.profile-field {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.profile-field:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.profile-field-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.profile-field-value {
+    color: #34495e;
+    font-size: 1rem;
+}
+
+.profile-tags-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.profile-tag-display {
+    background: #ecf0f1;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: #34495e;
+}
+
+
+
+.profile-actions {
+    text-align: center;
+}
+
+.edit-profile-btn {
+    background: #17a2b8;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-family: 'Merriweather', serif;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+}
+
+.edit-profile-btn:hover {
+    background: #138496;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
