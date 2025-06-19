@@ -1,0 +1,664 @@
+{
+    "name": "Neighborly Care Assistant",
+    "description": "AI assistant to help elderly people request assistance with daily tasks",
+    "defaultLanguageCode": "en",
+    "timeZone": "America/New_York",
+    "intents": [
+      {
+        "displayName": "Default Welcome Intent",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "hi"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "hello"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "good morning"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "good afternoon"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "good evening"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "help"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I need help"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "can you help me"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "Hello! I'm the Neighborly Care assistant. I'm here to help you find assistance with daily tasks. What do you need help with today? You can say things like 'I need help with groceries' or 'I need someone to drive me to an appointment'."
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "displayName": "Help Request - Grocery Shopping",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "I need help with groceries"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "grocery shopping"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I need someone to shop for me"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "help with shopping"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "buy groceries"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "food shopping"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "parameters": [
+          {
+            "id": "help-type",
+            "entityType": "projects/-/locations/-/agents/-/entityTypes/sys.any"
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "I understand you need help with grocery shopping. Can you tell me your address so I can find helpers near you? Also, when do you need this help - today, tomorrow, or a specific day?"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "displayName": "Help Request - Transportation",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "I need a ride"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "transportation help"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "drive me to appointment"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I need someone to drive me"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "help with transportation"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "ride to doctor"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "ride to store"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "parameters": [
+          {
+            "id": "help-type",
+            "entityType": "projects/-/locations/-/agents/-/entityTypes/sys.any"
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "I can help you find someone to give you a ride. Where do you need to go, and when do you need transportation? Also, what's your current address?"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "displayName": "Help Request - House Cleaning",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "house cleaning"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I need help cleaning"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "someone to clean my house"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "cleaning help"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "help with housework"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "parameters": [
+          {
+            "id": "help-type",
+            "entityType": "projects/-/locations/-/agents/-/entityTypes/sys.any"
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "I understand you need help with house cleaning. What specific cleaning tasks do you need help with? And what's your address so I can find helpers in your area?"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "displayName": "Help Request - Companionship",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "I feel lonely"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I need company"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "someone to talk to"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "companionship"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I want someone to visit"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "social help"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "parameters": [
+          {
+            "id": "help-type",
+            "entityType": "projects/-/locations/-/agents/-/entityTypes/sys.any"
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "I understand you'd like some companionship. Would you like someone to visit for conversation, or perhaps someone to do activities with? What's your address so I can find friendly helpers nearby?"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "displayName": "Help Request - Technology",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "technology help"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "help with computer"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "help with phone"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I don't understand technology"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "tech support"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "help with internet"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "parameters": [
+          {
+            "id": "help-type",
+            "entityType": "projects/-/locations/-/agents/-/entityTypes/sys.any"
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "I can help you find someone to assist with technology. What specific technology do you need help with - computer, smartphone, internet, or something else? And what's your address?"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "displayName": "Collect Address",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "I live at "
+              },
+              {
+                "text": "address",
+                "parameterId": "address"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "My address is "
+              },
+              {
+                "text": "address",
+                "parameterId": "address"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "address",
+                "parameterId": "address"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I'm located at "
+              },
+              {
+                "text": "address",
+                "parameterId": "address"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "parameters": [
+          {
+            "id": "address",
+            "entityType": "projects/-/locations/-/agents/-/entityTypes/sys.any"
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "Thank you for providing your address. I'm searching for available helpers in your area. Can you also tell me when you need this help - today, tomorrow, or a specific day and time?"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "displayName": "Collect Timing",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "today"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "tomorrow"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "this afternoon"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "this morning"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "this evening"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "next week"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "as soon as possible"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "right now"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "in an hour"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "parameters": [
+          {
+            "id": "timing",
+            "entityType": "projects/-/locations/-/agents/-/entityTypes/sys.date-time"
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "Perfect! I've recorded your request for help. I'm now connecting you with available helpers in the Atlanta area. You should receive a call or message from a helper within the next 30 minutes. Is there anything else I can help you with?"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "displayName": "Emergency",
+        "priority": 500000,
+        "trainingPhrases": [
+          {
+            "parts": [
+              {
+                "text": "emergency"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "urgent"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I fell"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "I'm hurt"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "call 911"
+              }
+            ],
+            "repeatCount": 1
+          },
+          {
+            "parts": [
+              {
+                "text": "medical emergency"
+              }
+            ],
+            "repeatCount": 1
+          }
+        ],
+        "messages": [
+          {
+            "text": {
+              "text": [
+                "This sounds like an emergency. Please hang up and call 911 immediately if you need medical assistance. If this is not a medical emergency but you need urgent help, I can try to find someone to assist you right away."
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "webhook": {
+      "displayName": "NeighborlyCareWebhook",
+      "genericWebService": {
+        "uri": "https://your-webhook-url.com/webhook",
+        "requestHeaders": {
+          "Authorization": "Bearer your-webhook-token"
+        }
+      }
+    }
+  }
+  

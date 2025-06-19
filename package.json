@@ -1,0 +1,30 @@
+{
+  "name": "sunny-side-care-dialogflow",
+  "version": "1.0.0",
+  "description": "Dialogflow integration for Sunny Side Care elderly assistance platform",
+  "main": "webhook-server.js",
+  "scripts": {
+    "start": "node webhook-server.js",
+    "dev": "nodemon webhook-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dialogflow",
+    "elderly-care",
+    "assistant",
+    "webhook",
+    "nodejs"
+  ],
+  "author": "Sunny Side Care",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

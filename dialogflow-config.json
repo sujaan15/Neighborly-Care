@@ -1,0 +1,219 @@
+{
+  "displayName": "Neighborly Care Assistant",
+  "description": "AI assistant to help elderly people request assistance with daily tasks",
+  "defaultLanguageCode": "en",
+  "timeZone": "America/New_York",
+  "intents": [
+    {
+      "displayName": "Default Welcome Intent",
+      "priority": 500000,
+      "trainingPhrases": [
+        "hi",
+        "hello",
+        "good morning",
+        "good afternoon", 
+        "good evening",
+        "help",
+        "I need help",
+        "can you help me"
+      ],
+      "responses": [
+        {
+          "text": "Hello! I'm the Neighborly Care assistant. I'm here to help you find assistance with daily tasks. What do you need help with today? You can say things like 'I need help with groceries' or 'I need someone to drive me to an appointment'."
+        }
+      ]
+    },
+    {
+      "displayName": "Help Request - Grocery Shopping",
+      "priority": 500000,
+      "trainingPhrases": [
+        "I need help with groceries",
+        "grocery shopping",
+        "I need someone to shop for me",
+        "help with shopping",
+        "buy groceries",
+        "food shopping"
+      ],
+      "parameters": [
+        {
+          "displayName": "help-type",
+          "value": "grocery-shopping",
+          "isList": false
+        }
+      ],
+      "responses": [
+        {
+          "text": "I understand you need help with grocery shopping. Can you tell me your address so I can find helpers near you? Also, when do you need this help - today, tomorrow, or a specific day?"
+        }
+      ]
+    },
+    {
+      "displayName": "Help Request - Transportation",
+      "priority": 500000,
+      "trainingPhrases": [
+        "I need a ride",
+        "transportation help",
+        "drive me to appointment",
+        "I need someone to drive me",
+        "help with transportation",
+        "ride to doctor",
+        "ride to store"
+      ],
+      "parameters": [
+        {
+          "displayName": "help-type",
+          "value": "transportation",
+          "isList": false
+        }
+      ],
+      "responses": [
+        {
+          "text": "I can help you find someone to give you a ride. Where do you need to go, and when do you need transportation? Also, what's your current address?"
+        }
+      ]
+    },
+    {
+      "displayName": "Help Request - House Cleaning",
+      "priority": 500000,
+      "trainingPhrases": [
+        "house cleaning",
+        "I need help cleaning",
+        "someone to clean my house",
+        "cleaning help",
+        "help with housework"
+      ],
+      "parameters": [
+        {
+          "displayName": "help-type",
+          "value": "cleaning",
+          "isList": false
+        }
+      ],
+      "responses": [
+        {
+          "text": "I understand you need help with house cleaning. What specific cleaning tasks do you need help with? And what's your address so I can find helpers in your area?"
+        }
+      ]
+    },
+    {
+      "displayName": "Help Request - Companionship",
+      "priority": 500000,
+      "trainingPhrases": [
+        "I feel lonely",
+        "I need company",
+        "someone to talk to",
+        "companionship",
+        "I want someone to visit",
+        "social help"
+      ],
+      "parameters": [
+        {
+          "displayName": "help-type",
+          "value": "companionship",
+          "isList": false
+        }
+      ],
+      "responses": [
+        {
+          "text": "I understand you'd like some companionship. Would you like someone to visit for conversation, or perhaps someone to do activities with? What's your address so I can find friendly helpers nearby?"
+        }
+      ]
+    },
+    {
+      "displayName": "Help Request - Technology",
+      "priority": 500000,
+      "trainingPhrases": [
+        "technology help",
+        "help with computer",
+        "help with phone",
+        "I don't understand technology",
+        "tech support",
+        "help with internet"
+      ],
+      "parameters": [
+        {
+          "displayName": "help-type",
+          "value": "technology",
+          "isList": false
+        }
+      ],
+      "responses": [
+        {
+          "text": "I can help you find someone to assist with technology. What specific technology do you need help with - computer, smartphone, internet, or something else? And what's your address?"
+        }
+      ]
+    },
+    {
+      "displayName": "Collect Address",
+      "priority": 500000,
+      "trainingPhrases": [
+        "I live at [address]",
+        "My address is [address]",
+        "[address]",
+        "I'm located at [address]"
+      ],
+      "parameters": [
+        {
+          "displayName": "address",
+          "entityType": "@sys.any",
+          "isList": false
+        }
+      ],
+      "responses": [
+        {
+          "text": "Thank you for providing your address. I'm searching for available helpers in your area. Can you also tell me when you need this help - today, tomorrow, or a specific day and time?"
+        }
+      ]
+    },
+    {
+      "displayName": "Collect Timing",
+      "priority": 500000,
+      "trainingPhrases": [
+        "today",
+        "tomorrow", 
+        "this afternoon",
+        "this morning",
+        "this evening",
+        "next week",
+        "as soon as possible",
+        "right now",
+        "in an hour"
+      ],
+      "parameters": [
+        {
+          "displayName": "timing",
+          "entityType": "@sys.date-time",
+          "isList": false
+        }
+      ],
+      "responses": [
+        {
+          "text": "Perfect! I've recorded your request for help. I'm now connecting you with available helpers in the Atlanta area. You should receive a call or message from a helper within the next 30 minutes. Is there anything else I can help you with?"
+        }
+      ]
+    },
+    {
+      "displayName": "Emergency",
+      "priority": 500000,
+      "trainingPhrases": [
+        "emergency",
+        "urgent",
+        "I fell",
+        "I'm hurt",
+        "call 911",
+        "medical emergency"
+      ],
+      "responses": [
+        {
+          "text": "This sounds like an emergency. Please hang up and call 911 immediately if you need medical assistance. If this is not a medical emergency but you need urgent help, I can try to find someone to assist you right away."
+        }
+      ]
+    }
+  ],
+  "webhookSettings": {
+    "webhookUrl": "https://your-webhook-url.com/webhook",
+    "webhookHeaders": {
+      "Authorization": "Bearer your-webhook-token"
+    }
+  }
+}
